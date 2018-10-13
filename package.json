@@ -6,6 +6,9 @@
   "scripts": {
     "start": "webpack-dev-server --mode development --open",
     "build": "webpack --mode production",
+    "lint": "tslint 'src/**/*.ts{,x}'",
+    "lint:fix": "tslint --fix 'src/**/*.ts{,x}'",
+    "format": "prettier --write 'src/**/*.ts{,x}'",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -15,8 +18,10 @@
     "@types/react": "^16.4.14",
     "@types/react-dom": "^16.0.8",
     "@types/react-redux": "^6.0.9",
+    "prettier": "^1.14.3",
     "ts-loader": "^4.5.0",
     "tslint": "^5.11.0",
+    "tslint-config-prettier": "^1.15.0",
     "typescript": "^3.1.1",
     "webpack": "^4.20.2",
     "webpack-cli": "^3.1.2",

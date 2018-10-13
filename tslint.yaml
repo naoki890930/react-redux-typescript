@@ -1,2 +1,9 @@
 extends:
-    - tslint:recommended
+  - tslint:latest
+  - tslint-config-prettier
+rules:
+  interface-name:
+    - "error"
+    - "never-prefix"
+  object-literal-sort-keys:
+    - "off"
