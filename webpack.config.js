@@ -15,7 +15,30 @@ module.exports = {
       {
         test: /\.tsx?$/,
         use: [
-          {loader: 'ts-loader'}
+          {
+            loader: 'ts-loader'
+          },
+        ],
+      },
+      {
+        test: /\.p?css$/,
+        use: [
+          {
+            loader: 'style-loader',
+          },
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true,
+              localIdentName: "[name]-[local]-[hash:base64:5]",
+            },
+          },
+          {
+            loader: 'typed-css-modules-loader',
+          },
+          {
+            loader: 'postcss-loader',
+          },
         ]
       }
     ]

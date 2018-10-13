@@ -1,6 +1,7 @@
 import * as React from "react";
 import { ActionDispatcher } from "./Container";
 import { CounterState } from "./module";
+import * as styles from "./style.pcss"
 
 interface Props {
   value: CounterState;
@@ -17,9 +18,22 @@ export class Counter extends React.Component<Props, {}> {
   public render() {
     return (
       <div>
+        <h1>Counter App</h1>
         <p>score: {this.props.value.num}</p>
-        <button onClick={this.onClickIncrement}>increment: 3</button>
-        <button onClick={this.onClickDecrement}>decrement: 2</button>
+        <div className={styles.buttonWrapper}>
+          <button
+            className={`${styles.button} ${styles.increment}`}
+            onClick={this.onClickIncrement}
+          >
+            increment: 3
+          </button>
+          <button
+            className={`${styles.button} ${styles.decrement}`}
+            onClick={this.onClickDecrement}
+          >
+            decrement: 2
+          </button>
+        </div>
       </div>
     );
   }
