@@ -8,17 +8,27 @@ interface Props {
 }
 
 export class Counter extends React.Component<Props, {}> {
+  constructor(props: Props) {
+    super(props);
+    this.onClickIncrement = this.onClickIncrement.bind(this);
+    this.onClickDecrement = this.onClickDecrement.bind(this);
+  }
+
   public render() {
     return (
       <div>
         <p>score: {this.props.value.num}</p>
-        <button onClick={() => this.props.actions.increment(3)}>
-          increment: 3
-        </button>
-        <button onClick={() => this.props.actions.decrement(2)}>
-          decrement: 2
-        </button>
+        <button onClick={this.onClickIncrement}>increment: 3</button>
+        <button onClick={this.onClickDecrement}>decrement: 2</button>
       </div>
     );
+  }
+
+  private onClickIncrement() {
+    this.props.actions.increment(3);
+  }
+
+  private onClickDecrement() {
+    this.props.actions.decrement(2);
   }
 }
