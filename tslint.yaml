@@ -8,3 +8,6 @@ rules:
     - "never-prefix"
   object-literal-sort-keys:
     - "off"
+  no-implicit-dependencies:
+    - true
+    - "dev"

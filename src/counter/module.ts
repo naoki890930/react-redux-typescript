@@ -1,39 +1,35 @@
 import { Action } from "redux";
 
+export type AppAction<T extends string, Extra extends {} = {}> = Action<T> & { [K in keyof Extra]: Extra[K] }
+
 // ActionCreator
 
-enum ActionNames {
+enum ActionType {
   INC = "counter/increment",
   DEC = "counter/decrement"
 }
 
-interface IncrementAction extends Action {
-  type: ActionNames.INC;
-  plusAmount: number;
-}
+type CounterAction =
+  | AppAction<ActionType.INC, { plusAmount: number }>
+  | AppAction<ActionType.DEC, { minusAmount: number }>
 
-export const incrementAmount = (amount: number): IncrementAction => ({
-  type: ActionNames.INC,
+const increment = (amount: number): CounterAction => ({
+  type: ActionType.INC,
   plusAmount: amount
-});
+})
 
-interface DecrementAction extends Action {
-  type: ActionNames.DEC;
-  minusAmount: number;
-}
-
-export const decrementAmount = (amount: number): DecrementAction => ({
-  type: ActionNames.DEC,
+const decrement = (amount: number): CounterAction => ({
+  type: ActionType.DEC,
   minusAmount: amount
-});
+})
+
+export const counterActions = { increment, decrement }
+
+// Reducer
 
 export interface CounterState {
   num: number;
 }
-
-// Reducer
-
-export type CounterActions = IncrementAction | DecrementAction;
 
 const initialState: CounterState = {
   num: 0
@@ -41,12 +37,12 @@ const initialState: CounterState = {
 
 export default function reducer(
   state: CounterState = initialState,
-  action: CounterActions
+  action: CounterAction
 ): CounterState {
   switch (action.type) {
-    case ActionNames.INC:
+    case ActionType.INC:
       return { num: state.num + action.plusAmount };
-    case ActionNames.DEC:
+    case ActionType.DEC:
       return { num: state.num - action.minusAmount };
     default:
       return state;

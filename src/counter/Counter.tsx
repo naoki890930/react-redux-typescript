@@ -1,15 +1,9 @@
 import * as React from "react";
-import { ActionDispatcher } from "./Container";
-import { CounterState } from "./module";
+import { CounterProp } from "./Container";
 import * as styles from "./style.pcss"
 
-interface Props {
-  value: CounterState;
-  actions: ActionDispatcher;
-}
-
-export class Counter extends React.Component<Props, {}> {
-  constructor(props: Props) {
+export class Counter extends React.Component<CounterProp, {}> {
+  constructor(props: CounterProp) {
     super(props);
     this.onClickIncrement = this.onClickIncrement.bind(this);
     this.onClickDecrement = this.onClickDecrement.bind(this);
@@ -39,10 +33,10 @@ export class Counter extends React.Component<Props, {}> {
   }
 
   private onClickIncrement() {
-    this.props.actions.increment(3);
+    this.props.action.increment(3);
   }
 
   private onClickDecrement() {
-    this.props.actions.decrement(2);
+    this.props.action.decrement(2);
   }
 }

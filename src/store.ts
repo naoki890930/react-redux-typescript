@@ -1,5 +1,5 @@
-import { Action, combineReducers, createStore } from "redux";
-import counter, { CounterActions, CounterState } from "./counter/module";
+import { combineReducers, createStore } from "redux";
+import counter, { CounterState } from "./counter/module";
 
 export default createStore(
   combineReducers({
@@ -12,5 +12,3 @@ export default createStore(
 export interface ReduxState {
   counter: CounterState;
 }
-
-export type ReduxAction = CounterActions | Action;
