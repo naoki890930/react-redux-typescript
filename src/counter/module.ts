@@ -1,6 +1,8 @@
-import { Action } from "redux";
+import { produce } from "immer";
+import { actionCreatorFactory } from "typescript-fsa";
+import { reducerWithInitialState } from "typescript-fsa-reducers";
 
-export type AppAction<T extends string, Extra extends {} = {}> = Action<T> & { [K in keyof Extra]: Extra[K] }
+const actionCreator = actionCreatorFactory()
 
 // ActionCreator
 
@@ -9,19 +11,8 @@ enum ActionType {
   DEC = "counter/decrement"
 }
 
-type CounterAction =
-  | AppAction<ActionType.INC, { plusAmount: number }>
-  | AppAction<ActionType.DEC, { minusAmount: number }>
-
-const increment = (amount: number): CounterAction => ({
-  type: ActionType.INC,
-  plusAmount: amount
-})
-
-const decrement = (amount: number): CounterAction => ({
-  type: ActionType.DEC,
-  minusAmount: amount
-})
+const increment = actionCreator<number>(ActionType.INC)
+const decrement = actionCreator<number>(ActionType.DEC)
 
 export const counterActions = { increment, decrement }
 
@@ -35,16 +26,10 @@ const initialState: CounterState = {
   num: 0
 };
 
-export default function reducer(
-  state: CounterState = initialState,
-  action: CounterAction
-): CounterState {
-  switch (action.type) {
-    case ActionType.INC:
-      return { num: state.num + action.plusAmount };
-    case ActionType.DEC:
-      return { num: state.num - action.minusAmount };
-    default:
-      return state;
-  }
-}
+export const counterReducer = reducerWithInitialState(initialState)
+  .case(increment, (state, payload) => produce(state, draft => {
+    draft.num += payload
+  }))
+  .case(decrement, (state, payload) => produce(state, draft => {
+    draft.num -= payload
+  }))

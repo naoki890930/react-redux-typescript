@@ -1,9 +1,9 @@
 import { combineReducers, createStore } from "redux";
-import counter, { CounterState } from "./counter/module";
+import { counterReducer, CounterState } from "./counter/module";
 
 export default createStore(
   combineReducers({
-    counter
+    counter: counterReducer
   }),
   (window as any).__REDUX_DEVTOOLS_EXTENSION__ &&
     (window as any).__REDUX_DEVTOOLS_EXTENSION__()

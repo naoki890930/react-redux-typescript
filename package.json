@@ -26,6 +26,7 @@
     "enzyme": "^3.7.0",
     "enzyme-adapter-react-16": "^1.6.0",
     "identity-obj-proxy": "^3.0.0",
+    "immer": "^1.7.4",
     "jest": "^23.6.0",
     "postcss-cssnext": "^3.1.0",
     "postcss-loader": "^3.0.0",
@@ -39,6 +40,8 @@
     "tslint-react": "^3.6.0",
     "typed-css-modules-loader": "0.0.15",
     "typescript": "^3.1.1",
+    "typescript-fsa": "^3.0.0-beta-2",
+    "typescript-fsa-reducers": "^1.0.0",
     "webpack": "^4.20.2",
     "webpack-cli": "^3.1.2",
     "webpack-dev-server": "^3.1.9"
