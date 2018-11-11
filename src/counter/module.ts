@@ -2,7 +2,7 @@ import { produce } from "immer";
 import { actionCreatorFactory } from "typescript-fsa";
 import { reducerWithInitialState } from "typescript-fsa-reducers";
 
-const actionCreator = actionCreatorFactory()
+const actionCreator = actionCreatorFactory();
 
 // ActionCreator
 
@@ -11,10 +11,10 @@ enum ActionType {
   DEC = "counter/decrement"
 }
 
-const increment = actionCreator<number>(ActionType.INC)
-const decrement = actionCreator<number>(ActionType.DEC)
+const increment = actionCreator<number>(ActionType.INC);
+const decrement = actionCreator<number>(ActionType.DEC);
 
-export const counterActions = { increment, decrement }
+export const counterActions = { increment, decrement };
 
 // Reducer
 
@@ -27,9 +27,13 @@ const initialState: CounterState = {
 };
 
 export const counterReducer = reducerWithInitialState(initialState)
-  .case(increment, (state, payload) => produce(state, draft => {
-    draft.num += payload
-  }))
-  .case(decrement, (state, payload) => produce(state, draft => {
-    draft.num -= payload
-  }))
+  .case(increment, (state, payload) =>
+    produce(state, draft => {
+      draft.num += payload;
+    })
+  )
+  .case(decrement, (state, payload) =>
+    produce(state, draft => {
+      draft.num -= payload;
+    })
+  );

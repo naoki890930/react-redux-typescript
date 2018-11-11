@@ -1,6 +1,6 @@
 import * as React from "react";
 import { CounterProp } from "./Container";
-import * as styles from "./style.pcss"
+import * as styles from "./style.pcss";
 
 export class Counter extends React.Component<CounterProp, {}> {
   constructor(props: CounterProp) {
